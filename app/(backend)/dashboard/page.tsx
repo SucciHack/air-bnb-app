@@ -375,7 +375,6 @@ export default function SidebarV1() {
                 <CardContent className="grid gap-8">
                   {patients &&
                     patients.slice(0, 5).map((patient) => {
-                      const initials = getInitials(patient.name);
                       return (
                         <div
                           key={patient.email}
@@ -383,7 +382,6 @@ export default function SidebarV1() {
                         >
                           <Avatar className="hidden h-9 w-9 sm:flex">
                             <AvatarImage src={""} alt="Avatar" />
-                            <AvatarFallback>{initials}</AvatarFallback>
                           </Avatar>
                           <div className="grid gap-1">
                             <p className="text-sm font-medium leading-none">
