@@ -38,7 +38,7 @@ export function AuthModal() {
         <DialogHeader className="border-b pb-4">
           <Button variant="ghost" size="icon" className="absolute left-4 top-4" onClick={() => {}}>
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
+            <span>Close</span>
           </Button>
           <DialogTitle className="text-center text-base font-medium">Log in or sign up</DialogTitle>
         </DialogHeader>

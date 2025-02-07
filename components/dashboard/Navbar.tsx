@@ -22,7 +22,7 @@ export default function Navbar() {
                     className="shrink-0 md:hidden"
                 >
                     <Menu className="h-5 w-5" />
-                    <span className="sr-only">Toggle navigation menu</span>
+                    <span>Toggle navigation menu</span>
                 </Button>
             </SheetTrigger>
             </Dialog>
@@ -34,7 +34,7 @@ export default function Navbar() {
                     className="flex items-center gap-2 text-lg font-semibold"
                     >
                     <Package2 className="h-6 w-6" />
-                    <span className="sr-only">Acme Inc</span>
+                    <span>Acme Inc</span>
                     </Link>
                     <Link
                     href="#"
