@@ -10,13 +10,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Property } from "@prisma/client"
 
 
-export default function PropertyDetail({property}:{property:Property}) {
+export default function PropertyDetail({property}:{property?:Property | null}) {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-start mb-6">
-        <h1 className="text-2xl font-semibold">{property.productName}</h1>
+        <h1 className="text-2xl font-semibold">{property?.productName}</h1>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" className="flex gap-2">
             <Share className="h-4 w-4" />
@@ -33,7 +33,7 @@ export default function PropertyDetail({property}:{property:Property}) {
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="col-span-2 row-span-2 relative rounded-l-xl overflow-hidden">
           <Image
-            src={property.productImages[2] || "/placeholder.svg"}
+            src={property?.productImages[2] || "/placeholder.svg"}
             alt="Property main view"
             width={800}
             height={600}
@@ -41,7 +41,7 @@ export default function PropertyDetail({property}:{property:Property}) {
           />
         </div>
         <div className="grid grid-cols-2 col-span-2 gap-2">
-          {property.productImages.map((src, i) => (
+          {property?.productImages.map((src, i) => (
             <div key={i} className="relative aspect-square">
               <Image src={src || "/placeholder.svg"} alt={`Property view ${i + 2}`} fill className="object-cover" />
             </div>
@@ -56,8 +56,8 @@ export default function PropertyDetail({property}:{property:Property}) {
         <div className="md:col-span-2">
           <div className="flex justify-between items-start pb-6 border-b">
             <div>
-              <h2 className="text-xl font-semibold mb-1">{property.location}</h2>
-              <p className="text-gray-600">{property.numOfBedrooms} Bedrooms· Private attached bathroom</p>
+              <h2 className="text-xl font-semibold mb-1">{property?.location}</h2>
+              <p className="text-gray-600">{property?.numOfBedrooms} Bedrooms· Private attached bathroom</p>
               <span className="inline-block px-2 py-1 bg-gray-100 rounded text-sm mt-2">New</span>
             </div>
             <div className="flex items-center gap-3">

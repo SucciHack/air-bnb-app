@@ -19,7 +19,7 @@ export type ProductInputProps = {
   location: string
   price: number
   description: string
-  numOfBedrooms?:number
+  numOfBedrooms:number
   productImages: string[]
   offers: string[]
   categoryId:string
