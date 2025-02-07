@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import type { CarouselApi } from "@/components/ui/carousel";
 import Image from "next/image";
 import { Property } from "@prisma/client";
+import Link from "next/link";
 
 export default function CardCarousel({property}:{property:Property}) {
   const [api, setApi] = useState<CarouselApi>();
@@ -40,14 +41,16 @@ export default function CardCarousel({property}:{property:Property}) {
           <CarouselContent>
             {property.productImages.map((image, index) => (
               <CarouselItem key={index}>
+                <Link href={`/product-details/${property.id}`}>
                 <div className="relative aspect-[4/3]">
-                  <Image
-                    alt={property.productName}
-                    className="object-cover w-full h-full rounded-t-lg"
-                    src={image}
-                    fill
-                  />
+                    <Image
+                      alt={property.productName}
+                      className="object-cover w-full h-full rounded-t-lg"
+                      src={image}
+                      fill
+                    />
                 </div>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -71,7 +74,10 @@ export default function CardCarousel({property}:{property:Property}) {
       <div className="p-6">
         <CardHeader className="p-0 mb-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">Forde, Norway</h2>
+            <div className="flex flex-col">
+            <h2 className="text-xl font-semibold">{property.productName}</h2>
+            <h3 className="font-semibold">{property.location}</h3>
+            </div>
             <div className="flex items-center gap-1">
               <Star className="w-5 h-5 fill-current text-yellow-400" />
               <span>4.78</span>
@@ -80,13 +86,11 @@ export default function CardCarousel({property}:{property:Property}) {
         </CardHeader>
         <div className="space-y-4">
           <p className="text-zinc-400">
-            Relax, rejuvenate and unplug in this unique contemporary Birdbox.
-            Feel close to nature in ultimate comfort. Enjoy the view of the epic
-            mountain range of Blegja and the Førdefjord.
+            {property.description}
           </p>
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-bold">397$</span>
+              <span className="text-2xl font-bold">${property.price}</span>
               <span className="text-zinc-400">/ night</span>
             </div>
             <Button className="bg-blue-600 hover:bg-blue-700">Book now</Button>

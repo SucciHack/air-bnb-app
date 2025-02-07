@@ -7,6 +7,9 @@ export async function GET(request:NextRequest, {params}:{params:Promise<{id:stri
     const singleCategory = await db.category.findUnique({
         where:{
             id
+        },
+        include:{
+            property:true
         }
     })
     try {

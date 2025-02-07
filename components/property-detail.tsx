@@ -7,22 +7,16 @@ import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Property } from "@prisma/client"
 
-const images = [
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20210406-0lJUASQwiTa8vz8Bwo5S0MD9VPPbht.png",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20210406-0lJUASQwiTa8vz8Bwo5S0MD9VPPbht.png",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20210406-0lJUASQwiTa8vz8Bwo5S0MD9VPPbht.png",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20210406-0lJUASQwiTa8vz8Bwo5S0MD9VPPbht.png",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20210406-0lJUASQwiTa8vz8Bwo5S0MD9VPPbht.png",
-]
 
-export default function PropertyDetail() {
+export default function PropertyDetail({property}:{property:Property}) {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-start mb-6">
-        <h1 className="text-2xl font-semibold">Lake View Suites SMDC Tagaytay</h1>
+        <h1 className="text-2xl font-semibold">{property.productName}</h1>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" className="flex gap-2">
             <Share className="h-4 w-4" />
@@ -39,7 +33,7 @@ export default function PropertyDetail() {
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="col-span-2 row-span-2 relative rounded-l-xl overflow-hidden">
           <Image
-            src={images[0] || "/placeholder.svg"}
+            src={property.productImages[2] || "/placeholder.svg"}
             alt="Property main view"
             width={800}
             height={600}
@@ -47,7 +41,7 @@ export default function PropertyDetail() {
           />
         </div>
         <div className="grid grid-cols-2 col-span-2 gap-2">
-          {images.slice(1, 5).map((src, i) => (
+          {property.productImages.map((src, i) => (
             <div key={i} className="relative aspect-square">
               <Image src={src || "/placeholder.svg"} alt={`Property view ${i + 2}`} fill className="object-cover" />
             </div>
@@ -62,8 +56,8 @@ export default function PropertyDetail() {
         <div className="md:col-span-2">
           <div className="flex justify-between items-start pb-6 border-b">
             <div>
-              <h2 className="text-xl font-semibold mb-1">Room in Tagaytay, Philippines</h2>
-              <p className="text-gray-600">2 beds · Private attached bathroom</p>
+              <h2 className="text-xl font-semibold mb-1">{property.location}</h2>
+              <p className="text-gray-600">{property.numOfBedrooms} Bedrooms· Private attached bathroom</p>
               <span className="inline-block px-2 py-1 bg-gray-100 rounded text-sm mt-2">New</span>
             </div>
             <div className="flex items-center gap-3">
