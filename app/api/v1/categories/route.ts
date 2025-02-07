@@ -30,7 +30,11 @@ export async function POST(request:NextRequest) {
 //GET
 export async function GET() {
     try {
-        const categories = await db.category.findMany()
+        const categories = await db.category.findMany(
+            {include:{
+                property:true
+            }}
+        )
         return NextResponse.json({
             data:categories,
             messages: "fetched successfully",

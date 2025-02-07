@@ -25,7 +25,7 @@ model Property {
   location String
   price Int
   description String
-  numOfBedrooms Int
+  numOfBedrooms Int?
   productImages String[]
   offers String[]
 
