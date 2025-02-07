@@ -16,7 +16,7 @@ export async function fetchedCategories() {
 export async function fetchedProperties() {
     const API = `${baseUrl}/api/v1/properties`
     try {
-        const res = await fetch(API)
+        const res = await fetch(API,{ cache: "no-store" })
         const properties = await res.json()
         return properties.data as Property[]
     } catch (error) {
