@@ -108,7 +108,7 @@ export default  function ProductForm({categories,}:{categories:Category[]}) {
                 />
                 <TextInput
                   register={register}
-                  errors={null}
+                  errors={errors}
                   label="Bed Rooms"
                   name="numOfBedrooms"
                   type = "number"
