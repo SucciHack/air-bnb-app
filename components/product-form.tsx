@@ -19,7 +19,7 @@ export type ProductInputProps = {
   location: string
   price: number
   description: string
-  numOfBedrooms:number
+  numOfBedrooms?:number
   productImages: string[]
   offers: string[]
   categoryId:string
@@ -108,7 +108,7 @@ export default  function ProductForm({categories,}:{categories:Category[]}) {
                 />
                 <TextInput
                   register={register}
-                  errors={errors}
+                  errors={null}
                   label="Bed Rooms"
                   name="numOfBedrooms"
                   type = "number"
