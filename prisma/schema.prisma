@@ -13,6 +13,26 @@ model Category {
   categoryName      String
   image            String
 
+  property Property[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Property {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  productName String
+  location String
+  price Int
+  description String
+  numOfBedrooms Int
+  productImages String[]
+  offers String[]
+
+
+
+  categoryId    String    @db.ObjectId
+  category      Category  @relation(fields: [categoryId], references: [id]) // Relationship 
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

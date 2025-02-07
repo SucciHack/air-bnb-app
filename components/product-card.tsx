@@ -13,8 +13,9 @@ import {
 import { useState, useEffect } from "react";
 import type { CarouselApi } from "@/components/ui/carousel";
 import Image from "next/image";
+import { Property } from "@prisma/client";
 
-export default function CardCarousel() {
+export default function CardCarousel({property}:{property:Property}) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -32,37 +33,18 @@ export default function CardCarousel() {
     });
   }, [api]);
 
-  const images = [
-    {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Modern house with large windows and a pool",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Cozy cabin in the woods",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Luxurious beachfront property",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Charming countryside cottage",
-    },
-  ];
-
   return (
-    <Card className="w-full max-w-sm text-black border-none">
+    <Card className="w-full text-black border-none bg-slate-50 shadow-md">
       <CardContent className="p-0">
         <Carousel setApi={setApi} className="w-full">
           <CarouselContent>
-            {images.map((image, index) => (
+            {property.productImages.map((image, index) => (
               <CarouselItem key={index}>
                 <div className="relative aspect-[4/3]">
                   <Image
-                    alt={image.alt}
+                    alt={property.productName}
                     className="object-cover w-full h-full rounded-t-lg"
-                    src={image.src}
+                    src={image}
                     fill
                   />
                 </div>

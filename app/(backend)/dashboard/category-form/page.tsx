@@ -28,6 +28,7 @@ export default function ProductForm() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     data.image = imageUrl
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await fetch(`${baseUrl}/api/v1/categories`, {
         method: "POST",
         headers: {
@@ -37,7 +38,6 @@ export default function ProductForm() {
       });
       reset()
       toast.success("category created successfully")
-      console.log(response)
     } catch (error) {
       console.log(error)
       toast.success("failed to create category")
@@ -65,7 +65,7 @@ export default function ProductForm() {
                 title="Category Image"
                 imageUrl={imageUrl}
                 setImageUrl={setImageUrl}
-                endpoint="imageUploader"
+                endpoint="categoryImage"
             />
 
             <SubmitButton
